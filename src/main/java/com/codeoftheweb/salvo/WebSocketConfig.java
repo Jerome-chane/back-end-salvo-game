@@ -21,7 +21,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/gs-guide-websocket")
-                .setAllowedOrigins("http://localhost:8081", "https://salvobattleship.netlify.com/",
+                .setAllowedOrigins("http://localhost:8081", "https://salvobattleship.netlify.com",
                         "chrome-extension://ggnhohnkfcpcanfekomdkjffnfcjnjam") //to use APIC extension for Chrome
                 .withSockJS();
     }
