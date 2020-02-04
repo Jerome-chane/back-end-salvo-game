@@ -135,6 +135,7 @@ public class SalvoController {
         if (isGuest(authentication)) {
             return new ResponseEntity<>(makeMap("error", "You must be logged in to start a new game"), HttpStatus.UNAUTHORIZED);
         } else {
+            Map<String, Object> dto = new LinkedHashMap<String, Object>();
             Player player = getAuthPlayer(authentication);
             Date newDate = new Date();
             Game newGame = new Game(newDate);
@@ -143,7 +144,9 @@ public class SalvoController {
             gamePlayerRepository.save(newGamePlayer);
 //            System.out.println("New Game Created " + newGame);
 //            System.out.println("New GP created " + newGamePlayer);
-            return new ResponseEntity<>(makeMap("gp_id", newGamePlayer.getId()), HttpStatus.ACCEPTED);
+            dto.put("gp_id", newGamePlayer.getId());
+            dto.put("game_id", newGame.getId());
+            return new ResponseEntity<>(makeMap("new game", dto), HttpStatus.ACCEPTED);
 
         }
     }
