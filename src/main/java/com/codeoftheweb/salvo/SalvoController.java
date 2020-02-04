@@ -248,9 +248,9 @@ public class SalvoController {
     }
 
     private String Status(GamePlayer gamePlayer){
+        if(gamePlayer.getShip().size() == 0 ) { return "Place your Ships"; }
         if(gamePlayer.getGame().getGamePlayers().size() <  2){ return "Waiting for player to join..";}
         if(gamePlayer.getGame().getGamePlayers().size() == 2 ){
-        if(gamePlayer.getShip().size() == 0 ) { return "Place your Ships"; }
             if(gamePlayer.getShip().size() != 0){
                 if(getOpponent(gamePlayer).getShip().size() == 0){ return "Waiting for Opponent to Place ships..";}
                 if(getOpponent(gamePlayer).getShip().size() != 0){
