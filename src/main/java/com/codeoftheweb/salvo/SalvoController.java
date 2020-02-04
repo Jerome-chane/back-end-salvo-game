@@ -146,7 +146,7 @@ public class SalvoController {
 //            System.out.println("New GP created " + newGamePlayer);
             dto.put("gp_id", newGamePlayer.getId());
             dto.put("game_id", newGame.getId());
-            return new ResponseEntity<>(makeMap("new game", dto), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(makeMap("new_game", dto), HttpStatus.ACCEPTED);
 
         }
     }
