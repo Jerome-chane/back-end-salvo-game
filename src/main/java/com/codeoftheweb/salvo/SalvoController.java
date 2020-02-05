@@ -196,7 +196,7 @@ public class SalvoController {
                         }
 
 
-                        else if (game_gps.getPlayerId() != player.getId() && game.getScores().size()==2){
+                        else if (game_gps.getPlayerId() != player.getId() && game.getScores().size()>1){
                             dto.put("status", "Game Ended");
                         } else if (game_gps.getPlayerId() != player.getId() && game.getGamePlayers().size()==1){
                             dto.put("status", "Game Open");
@@ -207,7 +207,7 @@ public class SalvoController {
 //                }
         }
         if(isGuest(authentication)){
-            if(game.getScores().size()==2){
+            if(game.getScores().size()>1){
                 dto.put("status", "Game Ended");
             }
             if(game.getScores().size()<1){
