@@ -182,25 +182,24 @@ public class SalvoController {
                 Set<GamePlayer> game_gp = game.getGamePlayers();
             List<GamePlayer> game_gp_sorted = game_gp.stream().collect(Collectors.toList());
             Collections.sort(game_gp_sorted, (gp1, gp2) -> gp1.getPlayerId().compareTo(gp2.getPlayerId()));
-
-                Set<GamePlayer> player_gp = player.getGamePlayerSet();
-            List<GamePlayer> player_gp_sorted = player_gp.stream().collect(Collectors.toList());
-            Collections.sort(player_gp_sorted, (gp1, gp2) -> gp1.getPlayerId().compareTo(gp2.getPlayerId()));
+//                Set<GamePlayer> player_gp = player.getGamePlayerSet();
+//            List<GamePlayer> player_gp_sorted = player_gp.stream().collect(Collectors.toList());
+//            Collections.sort(player_gp_sorted, (gp1, gp2) -> gp1.getPlayerId().compareTo(gp2.getPlayerId()));
 
                 for (GamePlayer game_gps : game_gp_sorted) {
-                    for (GamePlayer player_gps : player_gp_sorted) {
+//                    for (GamePlayer player_gps : player_gp_sorted) {
 
-                        if (game_gps.getPlayerId() == player_gps.getPlayerId()) {   // this gets the current player's gameplayer for this game
-                            dto.put("status", Status(player_gps));   // this will retrun the current game status to the player
-                        } else if (game_gps.getPlayerId() != player_gps.getPlayerId() && game.getScores().size()==2){
+                        if (game_gps.getPlayerId() == player.getId()) {   // this gets the current player's gameplayer for this game
+                            dto.put("status", Status(game_gps));   // this will retrun the current game status to the player
+                        } else if (game_gps.getPlayerId() != player.getId() && game.getScores().size()==2){
                             dto.put("status", "Game Ended");
-                        } else if (game_gps.getPlayerId() != player_gps.getPlayerId() && game.getGamePlayers().size()==1){
+                        } else if (game_gps.getPlayerId() != player.getId() && game.getGamePlayers().size()==1){
                             dto.put("status", "Game Open");
-                        } else if (game_gps.getPlayerId() != player_gps.getPlayerId() && game.getScores().size()<1 && game.getGamePlayers().size()==2){
+                        } else if (game_gps.getPlayerId() != player.getId() && game.getScores().size()<1 && game.getGamePlayers().size()==2){
                             dto.put("status", "Game in process...");
                         }
                     }
-                }
+//                }
         }
         if(isGuest(authentication)){
             if(game.getScores().size()==2){
