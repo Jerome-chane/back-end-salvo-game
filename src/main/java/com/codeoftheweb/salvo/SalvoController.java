@@ -185,8 +185,8 @@ public class SalvoController {
                 GamePlayer gamePlayer = new GamePlayer(player, game, newDate);
                 for (GamePlayer game_gp : gameGameplayers) {
                     for (GamePlayer player_gp : playerGamePlayers) {
-                        if (game_gp.getId().equals(player_gp.getId())) {   // this gets the current player's gameplayer for this game
-                            gamePlayer =game_gp;
+                        if (game_gp.getId() == player_gp.getId()) {   // this gets the current player's gameplayer for this game
+                            gamePlayer = game_gp;
                         }
                     }
                 }
