@@ -181,11 +181,11 @@ public class SalvoController {
             Player player = getAuthPlayer(authentication);
                 Set<GamePlayer> game_gp = game.getGamePlayers();
             List<GamePlayer> game_gp_sorted = game_gp.stream().collect(Collectors.toList());
-            Collections.sort(game_gp_sorted, (gp1, gp2) -> gp1.getId().compareTo(gp2.getId()));
+            Collections.sort(game_gp_sorted, (gp1, gp2) -> gp1.getPlayerId().compareTo(gp2.getPlayerId()));
 
                 Set<GamePlayer> player_gp = player.getGamePlayerSet();
             List<GamePlayer> player_gp_sorted = player_gp.stream().collect(Collectors.toList());
-            Collections.sort(player_gp_sorted, (gp1, gp2) -> gp1.getId().compareTo(gp2.getId()));
+            Collections.sort(player_gp_sorted, (gp1, gp2) -> gp1.getPlayerId().compareTo(gp2.getPlayerId()));
 
                 for (GamePlayer game_gps : game_gp_sorted) {
                     for (GamePlayer player_gps : player_gp_sorted) {
