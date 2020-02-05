@@ -176,11 +176,24 @@ public class SalvoController {
 
     private Map<String, Object> GameDTO(Game game, Authentication authentication) {
         Map<String, Object> dto = new LinkedHashMap<String, Object>();
-        if(!isGuest(authentication)){
+
+        if(!isGuest(authentication)){  // if player is logged in
             Player player = getAuthPlayer(authentication);
-          if(player.getScore(game)!=null){
-              dto.put("status", "game_over");
-          }
+                Set<GamePlayer> gameGameplayers = game.getGamePlayers();
+                Set<GamePlayer> playerGamePlayers = player.getGamePlayerSet();
+                Date newDate = new Date();
+                GamePlayer gamePlayer = new GamePlayer(player, game, newDate);   // this gets the current player's gameplayer for this game
+                for (GamePlayer game_gp : gameGameplayers) {
+                    for (GamePlayer player_gp : gameGameplayers) {
+                        if (game_gp.getId().equals(player_gp.getId())) {
+                            gamePlayer =game_gp;
+                        }
+                    }
+                }
+//          if(player.getScore(game)!=null){
+              dto.put("status", Status(gamePlayer));   // this will retrun the current game status to the player
+//          }
+
         }
         dto.put("game_id", game.getId());
         dto.put("created", game.getDate());
