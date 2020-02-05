@@ -193,13 +193,12 @@ public class SalvoController {
                         } else if (game_gp.getId() != player_gp.getId() && game.getScores().size()<1 && game.getGamePlayers().size()==2){
                             dto.put("status", "Game in process...");
                         }
-
                     }
                 }
         }
         if(isGuest(authentication)){
             if(game.getScores().size()==2){
-                dto.put("status", "Game Over");
+                dto.put("status", "Game Ended");
             }
             if(game.getScores().size()<1){
                 dto.put("status", "Game in process");
