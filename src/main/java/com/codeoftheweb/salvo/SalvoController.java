@@ -190,7 +190,7 @@ public class SalvoController {
                 for (GamePlayer game_gps : game_gp_sorted) {
                     for (GamePlayer player_gps : player_gp_sorted) {
 
-                        if (game_gps.getId() == player_gps.getId()) {   // this gets the current player's gameplayer for this game
+                        if (game_gps.getPlayerId() == player_gps.getPlayerId()) {   // this gets the current player's gameplayer for this game
                             dto.put("status", Status(player_gps));   // this will retrun the current game status to the player
                         } else if (game_gps.getId() != player_gps.getId() && game.getScores().size()==2){
                             dto.put("status", "Game Over");
