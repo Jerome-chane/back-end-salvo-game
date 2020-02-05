@@ -182,10 +182,10 @@ public class SalvoController {
                 Set<GamePlayer> gameGameplayers = game.getGamePlayers();
                 Set<GamePlayer> playerGamePlayers = player.getGamePlayerSet();
                 Date newDate = new Date();
-                GamePlayer gamePlayer = new GamePlayer(player, game, newDate);   // this gets the current player's gameplayer for this game
+                GamePlayer gamePlayer = new GamePlayer(player, game, newDate);
                 for (GamePlayer game_gp : gameGameplayers) {
-                    for (GamePlayer player_gp : gameGameplayers) {
-                        if (game_gp.getId().equals(player_gp.getId())) {
+                    for (GamePlayer player_gp : playerGamePlayers) {
+                        if (game_gp.getId().equals(player_gp.getId())) {   // this gets the current player's gameplayer for this game
                             gamePlayer =game_gp;
                         }
                     }
