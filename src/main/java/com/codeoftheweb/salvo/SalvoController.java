@@ -181,12 +181,17 @@ public class SalvoController {
             Player player = getAuthPlayer(authentication);
                 Set<GamePlayer> gameGameplayers = game.getGamePlayers();
                 Set<GamePlayer> playerGamePlayers = player.getGamePlayerSet();
-
                 for (GamePlayer game_gp : gameGameplayers) {
                     for (GamePlayer player_gp : playerGamePlayers) {
+
                         if (game_gp.getId() == player_gp.getId()) {   // this gets the current player's gameplayer for this game
                             dto.put("status", Status(game_gp));   // this will retrun the current game status to the player
+                        } else if (game_gp.getId() != player_gp.getId() && game.getScores().size()==2){
+                            dto.put("status", "Game Over");
+                        } else if (game_gp.getId() != player_gp.getId() && game.getScores().size()<1){
+                            dto.put("status", "Game in process");
                         }
+
                     }
                 }
         }
