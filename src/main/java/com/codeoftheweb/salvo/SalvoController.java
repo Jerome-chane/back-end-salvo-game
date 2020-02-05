@@ -160,7 +160,7 @@ public class SalvoController {
         } else {
             dto.put("player", loginDTO(authentication));
         }
-        dto.put("games", gameRepository.findAll().stream().map(game -> GameDTO(game)).collect(Collectors.toList()));
+        dto.put("games", gameRepository.findAll().stream().map(game -> GameDTO(game, authentication)).collect(Collectors.toList()));
         return dto;
     }
 
@@ -174,8 +174,14 @@ public class SalvoController {
         return dto;
     }
 
-    private Map<String, Object> GameDTO(Game game) {
+    private Map<String, Object> GameDTO(Game game, Authentication authentication) {
         Map<String, Object> dto = new LinkedHashMap<String, Object>();
+        if(!isGuest(authentication)){
+            Player player = getAuthPlayer(authentication);
+          if(player.getScore(game)!=null){
+              dto.put("status", "game_over");
+          }
+        }
         dto.put("game_id", game.getId());
         dto.put("created", game.getDate());
         dto.put("players_ids", game.getGamePlayers().stream().map(id -> id.getPlayerId()));
