@@ -176,9 +176,9 @@ public class SalvoController {
 
     private Map<String, Object> GameDTO(Game game, Authentication authentication) {
         Map<String, Object> dto = new LinkedHashMap<String, Object>();
-        Player player = getAuthPlayer(authentication);
-        if(!isGuest(authentication)){  // if player is logged in
 
+        if(!isGuest(authentication)){  // if player is logged in
+            Player player = getAuthPlayer(authentication);
                 Set<GamePlayer> gameGameplayers = game.getGamePlayers();
                 Set<GamePlayer> playerGamePlayers = player.getGamePlayerSet();
 
@@ -189,20 +189,17 @@ public class SalvoController {
                         }
                     }
                 }
-
-
         }
         if(isGuest(authentication)){
-            if(player.getScore(game)!=null){
+            if(game.getScores().size()==2){
                 dto.put("status", "Game Over");
             }
-            if(player.getScore(game)== null){
+            if(game.getScores().size()<1){
                 dto.put("status", "Game in process");
             }
 
-
         }
-            dto.put("game_id", game.getId());
+        dto.put("game_id", game.getId());
         dto.put("created", game.getDate());
         dto.put("players_ids", game.getGamePlayers().stream().map(id -> id.getPlayerId()));
         dto.put("gamePlayers", game.getGamePlayers().stream().map(gamePlayer -> makeGamePlayerDTO(gamePlayer)));
