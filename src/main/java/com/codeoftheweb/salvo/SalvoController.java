@@ -196,6 +196,9 @@ public class SalvoController {
             if(player.getScore(game)!=null){
                 dto.put("status", "Game Over");
             }
+            if(player.getScore(game)== null){
+                dto.put("status", "Game in process");
+            }
 
 
         }
