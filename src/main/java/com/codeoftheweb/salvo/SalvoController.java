@@ -189,9 +189,14 @@ public class SalvoController {
                 for (GamePlayer game_gps : game_gp_sorted) {
 //                    for (GamePlayer player_gps : player_gp_sorted) {
 
-                        if (game_gps.getPlayerId() == player.getId()) {   // this gets the current player's gameplayer for this game
-                            dto.put("status", Status(game_gps));   // this will retrun the current game status to the player
-                        } else if (game_gps.getPlayerId() != player.getId() && game.getScores().size()==2){
+                        if (game_gps.getPlayerId() == player.getId()) {
+                            // this gets the current player's gameplayer for this game
+                            dto.put("status", Status(game_gps)); // this will retrun the current game status to the player
+                            break;
+                        }
+
+
+                        else if (game_gps.getPlayerId() != player.getId() && game.getScores().size()==2){
                             dto.put("status", "Game Ended");
                         } else if (game_gps.getPlayerId() != player.getId() && game.getGamePlayers().size()==1){
                             dto.put("status", "Game Open");
