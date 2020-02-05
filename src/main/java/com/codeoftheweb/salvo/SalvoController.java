@@ -322,32 +322,38 @@ public class SalvoController {
                             }
                         }
                     }
-                    if(gamePlayer.getScore() == null) {
+
                         if (player == 1 && opponent == 1) {
-                            if (gamePlayer.getGame().getScores().size() <= 1) {
+                            if(gamePlayer.getScore() == null) {
+//                            if (gamePlayer.getGame().getScores().size() <= 1) {
                                 Score newScore = new Score(gamePlayer.getPlayer(), gamePlayer.getGame(), 0.5);
                                 scoreRepository.save(newScore);
                             }
+//                            }
                             return "Draw!";
                         }
                         ;
 
                         if (player == 0 && opponent == 1) {
-                            if (gamePlayer.getGame().getScores().size() <= 1) {
+                            if(gamePlayer.getScore() == null) {
+//                            if (gamePlayer.getGame().getScores().size() <= 1) {
                                 Score newScore = new Score(gamePlayer.getPlayer(), gamePlayer.getGame(), 0);
                                 scoreRepository.save(newScore);
                             }
+//                            }
                             return "You Lost!";
                         }
 
                         if (player == 1 && opponent == 0) {
-                            if (gamePlayer.getGame().getScores().size() <= 1) {
+                            if(gamePlayer.getScore() == null) {
+//                            if (gamePlayer.getGame().getScores().size() <= 1) {
                                 Score newScore = new Score(gamePlayer.getPlayer(), gamePlayer.getGame(), 1);
                                 scoreRepository.save(newScore);
                             }
+//                            }
                             return "Victory!";
                         }
-                    }
+
                     ///////////////////////////////////////////   ///////////////////////////////////////////   ///////////////////////////////////////////
                     }
                     if(gamePlayer.getSalvoes().size() > getOpponent(gamePlayer).getSalvoes().size()){ return "Waiting for opponent salvoes..";}
