@@ -239,7 +239,7 @@ public class SalvoController {
         }
         if (gamePlayer != null) {
             dto.put("status", Status(gamePlayer));
-            dto.put("game", GameDTO(gamePlayer.getGame()));
+            dto.put("game", GameDTO(gamePlayer.getGame(), authentication));
             dto.put("player", game_view_PlayerDTO(player));
             dto.put("ships", gamePlayer.getShip().stream().map(ship -> ShipDTO(ship)));
             dto.put("all_salvoes", gamePlayer.getSalvoes().stream().map(salvo -> salvo.getLocations()));
